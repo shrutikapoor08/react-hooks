@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./SlideShow.css";
 
 function SlideShow() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slides, setSlides] = useState([]);
+  const slideRef = useRef(null);
 
   const API_URL = "https://dummyjson.com/products";
 
@@ -26,16 +27,17 @@ function SlideShow() {
   const prevSlide = () => {
     if (currentSlide === 0) return;
     setCurrentSlide(currentSlide - 1);
+    slideRef.current.focus();
   };
   const nextSlide = () => {
     if (currentSlide === slides.length - 1) return;
     setCurrentSlide(currentSlide + 1);
+    slideRef.current.focus();
   };
   return (
     <div className="slideshow">
-      <div className="slide">
+      <div className="slide" ref={slideRef} tabIndex={0}>
         <img
-          className=""
           src={slides[currentSlide]?.thumbnail}
           alt={slides[currentSlide]?.description}
         />
