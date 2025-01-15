@@ -2,11 +2,7 @@ import "./App.css";
 import SlideShow from "./components/SlideShow/SlideShow";
 
 function App() {
-  return (
-    <div>
-      <SlideShow />
-    </div>
-  );
+  return <SlideShow />;
 }
 
 export default App;

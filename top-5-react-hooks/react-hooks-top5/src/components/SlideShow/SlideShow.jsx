@@ -1,10 +1,13 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, createContext, useContext } from "react";
 import "./SlideShow.css";
+
+const ThemeContext = createContext("light");
 
 function SlideShow() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slides, setSlides] = useState([]);
   const slideRef = useRef(null);
+  const [theme, setTheme] = useState("light");
 
   const API_URL = "https://dummyjson.com/products";
 
@@ -34,19 +37,27 @@ function SlideShow() {
     setCurrentSlide(currentSlide + 1);
     slideRef.current.focus();
   };
+
   return (
-    <div className="slideshow">
-      <div className="slide" ref={slideRef} tabIndex={0}>
-        <img
-          src={slides[currentSlide]?.thumbnail}
-          alt={slides[currentSlide]?.description}
-        />
+    <ThemeContext.Provider value={theme}>
+      <header>
+        <button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
+          Change theme {theme}
+        </button>
+      </header>
+      <div className="slideshow slide-${theme}">
+        <div className="slide" ref={slideRef} tabIndex={0}>
+          <img
+            src={slides[currentSlide]?.thumbnail}
+            alt={slides[currentSlide]?.description}
+          />
+        </div>
+        <div className="controls">
+          <button onClick={prevSlide}>Previous</button>
+          <button onClick={nextSlide}>Next</button>
+        </div>
       </div>
-      <div className="controls">
-        <button onClick={prevSlide}>Previous</button>
-        <button onClick={nextSlide}>Next</button>
-      </div>
-    </div>
+    </ThemeContext.Provider>
   );
 }
 
