@@ -1,0 +1,62 @@
+.slideshow {
+    display: flex;
+    overflow: hidden;
+    transition: translate(50%);
+    position: relative;
+    border-radius: 8px; /* Rounded borders for slideshow container */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for a polished look */
+    background-color: #f9f9f9; /* Light background to complement images */
+width: 100%;
+margin: 0 10px;
+max-height: 450px;
+}
+
+.slideshow img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 8px; /* Rounded corners for images */   
+  }
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+
+.control-btn {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 24px;
+    padding: 10px 18px;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto; /* Enable clicking */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    position: absolutele;
+    top: 30%;
+  }
+  
+  .control-btn.left {
+    margin-left: 15px;
+  }
+  
+  .control-btn.right {
+    margin-right: 15px;
+  }
+  
+  .control-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    transform: scale(1.1);
+  }
+  
+  .control-btn:active {
+    transform: scale(0.9);
+  }
